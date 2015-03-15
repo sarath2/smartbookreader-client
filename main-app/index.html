@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>SmartRead - Read in a smart way.</title>
+	<link rel="stylesheet" media="all" href="js/ng-table/ng-table.min.css">
+	<link rel="stylesheet" media="all" href="css/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" media="all" href="css/main.css">
+	<base target="_blank">
+</head>
+
+<body>
+	<div ng-app="mainApp">
+		<div class="container-narrow">
+			<ng-include src="'./views/partial/header.html'"></ng-include>
+			<div class="content" ng-view=""></div>
+			<hr>
+			<ng-include src="'./views/partial/footer.html'"></ng-include>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-cookies.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.6.0.js"></script>
+	<script src="js/sockjs-0.3.min.js"></script>
+	<script src="js/jspath.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="scripts/directives/highcharts-ng.js"></script>
+	<!-- handle google auth -->
+	<script src="js/google-auth/js/googleOauth.js"></script>
+	<script src="js/google-auth/js/angularOauth.js"></script>
+	<!-- File upload -->
+	<script src="js/ng-flow-standalone.min.js"></script>
+	<!-- image search -->
+	<script src="https://www.google.com/jsapi"></script>
+	<script src="js/lodash.min.js"></script>
+	<script src="js/ng-table/ng-table.min.js"></script>
+
+	<!-- services -->
+	<script src="scripts/services/api.js"></script>
+	<script src="scripts/services/outsider.js"></script>
+	<script src="scripts/services/session.js"></script>
+	<script src="scripts/services/analysis.js"></script>
+	<script src="scripts/services/utility.js"></script>
+	<script src="scripts/services/options.js"></script>
+	<script src="scripts/services/socket.js"></script>
+
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/partial/header.js"></script>
+	<script src="scripts/controllers/dashboard.js"></script>
+	<script src="scripts/controllers/games.js"></script>
+	<script src="scripts/controllers/contact.js"></script>
+	<script src="scripts/controllers/error.js"></script>
+	<script src="scripts/controllers/word-lookup.js"></script>
+	<script src="scripts/controllers/member/login.js"></script>
+	<script src="scripts/controllers/member/forgot.js"></script>
+	<script src="scripts/controllers/member/register.js"></script>
+	<script src="scripts/controllers/games/word-lookup-quiz.js"></script>
+	<script src="scripts/controllers/games/synonyma.js"></script>
+	<script src="scripts/controllers/gdriveRead.js"></script>
+	<script src="scripts/controllers/admin.js"></script>
+</body>
+
+</html>

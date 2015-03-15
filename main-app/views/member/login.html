@@ -1,0 +1,96 @@
+<div class="container">
+
+	<div class="row" ng-show="processing">
+		<div style="margin-top: 40px; text-align: center; font-weight: bold;" class="container-middle ">
+			Please wait..
+		</div>
+	</div>
+
+	<div class="row" ng-hide="processing">
+		<div ng-if="login_error" style="width: 50%; margin: 20px auto; padding: 20px; background-color: rgb(223, 102, 83); color: white; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;">
+			Error occured:
+			<ul>
+				<li>{{login_error}}</li>
+			</ul>
+		</div>
+		<div class="cont-middle">
+			<h1 class="text-center login-title">Sign in to use SmartRead!</h1>
+			<span class="text-center new-account">Not a member? <a href="#/register">Create an account &rsaquo;&rsaquo;</a></span>
+			<hr>
+			<h4 class="text-center">Login or Register with:</h4>
+			<span class="text-center">
+			<div id="gSignInWrapper" style="cursor:pointer;">				
+				<div id="customBtn" ng-click="authenticate()" class="customGPlusSignIn">
+					<span class="icon"></span>
+			<span class="buttonText">Google</span>
+		</div>
+	</div>
+	</span>
+	<hr>
+	<h4 class="text-center">or</h4>
+	<br>
+	<div class="account-wall">
+		<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+		<form class="form-signin" name="loginForm">
+			<!--<input ng-model="user.username" class="form-control" placeholder="Email" type="text" required autofocus>-->
+			<input ng-model="user.username" class="form-control" placeholder="Email" type="email" required autofocus>
+			<input type="password" class="form-control" ng-model="user.password" placeholder="Password" required>
+			<button ng-click="login()" class="btn btn-large btn-primary btn-block">
+				Sign in</button>
+			<a href="#/forgot" class="pull-right need-help">Forgot your password? </a><span class="clearfix"></span>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+<br/>
+<br/>
+
+<!-- handle google oauth -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<!--		  <script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script>-->
+<script>
+	function signinCallback(authResult) {
+		console.log(100);
+		chrome.identity.getAuthToken({
+			'interactive': true
+		}, function (token) {
+			// Use the token.
+		});
+	}
+</script>
+<style>
+	#customBtn {
+		display: inline-block;
+		background: #dd4b39;
+		color: white;
+		width: 165px;
+		border-radius: 5px;
+		white-space: nowrap;
+	}
+	#customBtn:hover {
+		background: #e74b37;
+		cursor: hand;
+	}
+	span.label {
+		font-weight: bold;
+	}
+	span.icon {
+		background: url('images/btn_red_32.png') transparent 5px 50% no-repeat;
+		display: inline-block;
+		vertical-align: middle;
+		width: 35px;
+		height: 35px;
+		border-right: #bb3f30 1px solid;
+	}
+	span.buttonText {
+		display: inline-block;
+		vertical-align: middle;
+		padding-left: 35px;
+		padding-right: 35px;
+		font-size: 14px;
+		font-weight: bold;
+		/* Use the Roboto font that is loaded in the <head> */
+		font-family: 'Roboto', arial, sans-serif;
+	}
+</style>

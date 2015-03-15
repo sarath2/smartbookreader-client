@@ -1,0 +1,59 @@
+<div>
+	<div class="row">
+		<div class="col-xs-4">
+			<input ng-model="search.userText" data-ng-change="filterTable()" type="text" class="form-control" placeholder="Search file...">
+		</div>
+	</div>
+<!--
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Activity</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="userInfo in userInfos|filter:searchUser">
+				<td>{{$index+1}}</td>
+				<td>{{userInfo.user_first_name}} {{userInfo.user_last_name}}</td>
+				<td>{{userInfo.user_email}}</td>
+				<td>{{userInfo.activity?userInfo.activity:0}}</td>
+			</tr>
+		</tbody>
+	</table>
+-->
+	<table ng-table="userInfosTable" template-pagination="custom/pager" class="table table-hover">
+		<tbody>
+			<tr data-ng-repeat="userInfo in $data">
+				<td data-title="'Name'" sortable="'user_first_name'">{{userInfo.user_first_name}} {{userInfo.user_last_name}}</td>
+				<td data-title="'Email'" sortable="'user_email'">{{userInfo.user_email}}</td>
+				<td data-title="'Member since'" sortable="'user_created_date'">{{userInfo.user_created_date| date:'dd-MM-yyyy'}}</td>
+				<td data-title="'Activity'" sortable="'activity'">{{userInfo.activity?(userInfo.activity| number):0}}</td>
+				<td data-title="'Quiz taken'" sortable="'quiz_taken'">{{userInfo.quiz_taken?(userInfo.quiz_taken| number):0}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br>
+    <script type="text/ng-template" id="custom/pager">
+        <ul class="pager ng-cloak">
+          <li ng-repeat="page in pages"
+                ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+            <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+            <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+          </li>
+            <li> 
+            <div class="btn-group">
+                <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)" class="btn btn-default">10</button>
+                <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)" class="btn btn-default">25</button>
+                <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)" class="btn btn-default">50</button>
+                <button type="button" ng-class="{'active':params.count() == 100}" ng-click="params.count(100)" class="btn btn-default">100</button>
+                <button type="button" ng-class="{'active':params.count() == 1000}" ng-click="params.count(1000)" class="btn btn-default">1000</button>
+                <button type="button" ng-class="{'active':params.count() == 5000}" ng-click="params.count(5000000)" class="btn btn-default">All</button>
+            </div>
+            </li>
+        </ul>
+    </script>

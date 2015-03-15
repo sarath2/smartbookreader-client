@@ -1,0 +1,78 @@
+<div style="margin: 30px 0px 20px;">
+
+    <div ng-show="quiz.status == flags.STATUSES.FINISHED">
+        <p style="margin-top: 25px; text-align:  center; ">
+        <h4>Finished!</h4> <br/>
+        <p>
+            Thank you for playing the word quiz game. Hopefully, you know meanings of the all words now.
+            <br/> <br/> <a class="btn btn-success" href="#/games">Go back to games page >></a></p>
+        </p>
+    </div>
+
+    <div ng-show="quiz.status == flags.STATUSES.ONGOING">
+
+        <div ng-show="quiz.step == flags.STEPS.QUESTION" style="margin-top: 10px; text-align: center">
+
+            <div style="text-align: left;">
+                <h4>Definition: </h4>
+                <ol>
+                    <li data-ng-repeat="definition in quiz.word.lookupResult">
+                        {{ definition.text }}
+                    </li>
+                </ol>
+            </div>
+
+            <h5 style="margin-top: 35px;">Guess the word: </h5>
+            <input type="text" ng-model="quiz.answer.guess" ng-required="true" style="width: 30%;"/>
+
+            <div style="margin-top: 15px; text-align:  center; ">
+                <div ng-show="quiz.hint.status == flags.HINT.INACTIVE">
+                    <a ng-click="giveHint()" style="cursor: pointer;">Give me a hint</a> <br><br>
+                </div>
+
+                <div ng-show="quiz.hint.status == flags.HINT.LOADING">
+                    Hint loading, please wait.. <br/> <br/>
+                </div>
+
+                <div ng-show="quiz.hint.status == flags.HINT.SHOWING" style="margin-bottom: 20px;">
+                    <span ng-repeat="image in quiz.hint.images">
+                        <img style="max-width: 100px; max-height: 150px; margin-right: 15px;" ng-src="{{ image.tbUrl }}"/>
+                    </span>
+                </div>
+                <button ng-click="showResult()" ng-disabled="!quiz.answer.guess" class="btn btn-primary">See Result</button>
+                <button ng-click="nextQuestion()" class="btn">Skip ></button>
+
+            </div>
+
+        </div>
+
+        <div ng-show="quiz.step == flags.STEPS.RESULT" style="margin-top: 10px;">
+
+            <div class="well well-small answer_box">
+                <div class="answer_result_box" ng-class="{correct_answer: quiz.answer.result, wrong_answer: !quiz.answer.result}">
+                    <span ng-show="quiz.answer.result">Correct!</span>
+                    <span ng-show="!quiz.answer.result">Wrong!</span>
+                </div>
+                <p>Answer: {{quiz.word.word_lookup_word}}</p>
+                <p>Your guess: <span ng-bind="quiz.answer.guess"></span></p>
+
+                <p style="margin-top: 25px; text-align:  center; ">
+                    <button ng-disabled="quiz.status == flags.STATUSES.FINISHED" ng-click="nextQuestion()" class="btn btn-primary">Next Question >></button>
+                    <button class="btn btn-info" ng-click="finish()">Finish Quiz</button>
+                </p>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <span class="pull-right">Lookup Times: {{quiz.word.word_lookup_count}} </span>
+                <h4>About the word: {{quiz.word.word_lookup_word}}</h4>
+            </div>
+            <hr/>
+            <h4>Definition: </h4>
+            <ol>
+                <li data-ng-repeat="definition in quiz.word.lookupResult">
+                    {{ definition.text }} <i>( {{definition.partOfSpeech}} )</i>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

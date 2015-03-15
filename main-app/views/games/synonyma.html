@@ -1,0 +1,85 @@
+<div class="modal-header" style="margin-bottom: 30px;">
+    <h3>
+        Synonyma
+    </h3>
+</div>
+
+<div>
+
+    <div ng-show="status == flags.STATUSES.STARTING">
+        <div style="text-align: center; padding: 25px 10px; font-weight: bold; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; width: 50%; margin: 0px auto; background-color: #E7F0FF;">
+
+            <img src="images/games_synonyma.png" /> <br/>
+
+            <p style="margin-top: 15px; margin-bottom: 30px; font-size: 25px;">Try to find the irrelevant word</p>
+
+            Select Level:
+            <select ng-model="level" style="margin: 0px 10px;">
+                <option value="1">Easy</option>
+                <option value="2">Normal</option>
+                <option value="3">Hard</option>
+            </select>
+            <button ng-click="start()" class="btn btn-success">Play ></button>
+        </div>
+
+        <div style="border-top: 1px solid #ccc; margin-top: 35px; padding-top: 15px;">
+            <h4>How it works?</h4>
+            <p>This game aims to help you memorizing words. Questions are generated from word look-ups that you did while reading e-books.</p>
+        </div>
+    </div>
+
+    <div ng-show="status == flags.STATUSES.ERROR" style="text-align: center; font-weight: bold; margin-top: 100px; font-size: 100%; color: #C51313;">
+        Error occurred while connecting to server. Server administrators are notified. Please try again later..
+    </div>
+
+    <div ng-show="status == flags.STATUSES.LOADING" style="text-align: center; font-weight: bold; margin-top: 100px; font-size: 150%;">
+        <img src="./images/progress.gif" /> <br/><br/>
+        Loading, please wait..
+    </div>
+
+
+    <div ng-show="status == flags.STATUSES.PLAYING">
+
+        <div ng-show="step == flags.STEPS.QUESTION" style="width: 50%; margin: 0px auto; ">
+            <p style="text-align: center;">One choice is <b>not</b> the synonym of <b>{{question.word}}</b>, try to find it!</p>
+            <div style="padding: 30px; border: 1px solid #CBD9F0; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; background-color: #E7F0FF;">
+                <span class="pull-right">{{question_index+1}} / {{questions.length}}</span>
+                <div style="margin-bottom: 15px;">
+                    > <span style="font-weight: bold; font-style: italic;">{{question.word}}</span> doesn't mean:
+                </div>
+                <ul>
+                    <li ng-repeat="choice in question.choices" style="line-height: 35px;"><a class="btn btn-small" ng-click="answer(question.answer, choice)">{{choice}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-show="step == flags.STEPS.RESULT">
+            <div class="well well-small answer_box">
+                <div class="answer_result_box" ng-class="{correct_answer: question.result, wrong_answer: !question.result}">
+                    <span ng-show="question.result">Correct!</span>
+                    <span ng-show="!question.result">Wrong!</span>
+                </div>
+                <p>Answer: {{question.answer}}</p>
+                <p>Your guess: <span ng-bind="question.user_choice"></span></p>
+
+                <p style="margin-top: 25px; text-align:  center; ">
+                    <button ng-disabled="quiz.status == flags.STATUSES.FINISHED" ng-click="nextQuestion()" class="btn btn-primary">Next Question >></button>
+                    <button class="btn btn-info" ng-click="finish()">Finish Game</button>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div ng-show="status == flags.STATUSES.FINISHED">
+        <p style="margin-top: 25px; text-align:  center; ">
+        <h4>Finished!</h4> <br/>
+        <p>
+            Thank you for playing Synonyma. Hopefully, you know meanings of the all words now.
+            <br/> <br/> <a class="btn btn-success" href="#/games">Go back to games page >></a>
+        </p>
+    </div>
+
+</div>
+
