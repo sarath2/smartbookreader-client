@@ -2,7 +2,7 @@
 
 var server = {
 	mode: 'local',
-	url: 'http://localhost:3000'
+	url: 'http://ec2-54-169-35-13.ap-southeast-1.compute.amazonaws.com:3000'
 };
 // var server = {mode: 'server', url: 'http://smart-read-api.aws.af.cm'};
 chrome.storage.local.set({
