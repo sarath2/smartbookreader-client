@@ -2,7 +2,7 @@
     "manifest_version": 2, 
     "name": "smartbookreader",
     "short_name": "Smart-Read",
-    "version": "0.1.2",
+    "version": "0.1.3",
 
     "default_locale" : "en_US",
     "description": "Read in a smart way.",
@@ -15,7 +15,7 @@
 
     "minimum_chrome_version": "14",
 
-    "content_security_policy": "script-src 'self' 'unsafe-eval'  http://localhost https://ssl.google-analytics.com https://www.google.com; object-src 'self';",
+    "content_security_policy": "script-src 'self' 'unsafe-eval' http://ec2-54-169-35-13.ap-southeast-1.compute.amazonaws.com  http://localhost https://ssl.google-analytics.com https://www.google.com; object-src 'self';",
 
     "app": {
         "launch": {

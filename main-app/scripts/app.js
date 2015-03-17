@@ -1,8 +1,8 @@
 'use strict';
 
 var server = {
-	mode: 'local',
-	url: 'http://localhost:3000'
+	mode: 'server',
+	url: 'http://ec2-54-169-35-13.ap-southeast-1.compute.amazonaws.com:3000'
 };
 // var server = {mode: 'server', url: 'http://smart-read-api.aws.af.cm'};
 chrome.storage.local.set({
@@ -199,7 +199,7 @@ mainApp.filter('oneZeroToSuccessFail', function () {
 mainApp.config(function (TokenProvider) {
 	TokenProvider.extendConfig({
 		accessType: 'online',
-		clientId: '849237012838-10la8vn95sudo06v2ch6d8gc3jlf9fva.apps.googleusercontent.com',
+		clientId: '837878784591-k0im13ff35omh9t5kn6v6p3eeig5hckj.apps.googleusercontent.com',
 		redirectUri: server.url + '/googleauth',
 		scopes: ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/plus.me", "https://www.googleapis.com/auth/drive.file"],
 		state: 'smart-reader',

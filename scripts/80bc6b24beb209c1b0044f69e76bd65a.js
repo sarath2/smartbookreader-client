@@ -2984,7 +2984,7 @@ Readium.Views.FilePickerView = Backbone.View.extend({
 		
 		$(this.el).on('shown', function(){
 			//When showing model load gDrive epub files
-			var url = 'http://localhost:3000/readGdrive';
+			var url = 'http://ec2-54-169-35-13.ap-southeast-1.compute.amazonaws.com:3000/readGdrive';
 			var bookList ='';
 			$.get( url, function( resultList ) {
 				if(resultList){
