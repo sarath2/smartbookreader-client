@@ -199,7 +199,7 @@ mainApp.filter('oneZeroToSuccessFail', function () {
 mainApp.config(function (TokenProvider) {
 	TokenProvider.extendConfig({
 		accessType: 'online',
-		clientId: '837878784591-k0im13ff35omh9t5kn6v6p3eeig5hckj.apps.googleusercontent.com',
+		clientId: '849237012838-10la8vn95sudo06v2ch6d8gc3jlf9fva.apps.googleusercontent.com',
 		redirectUri: server.url + '/googleauth',
 		scopes: ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/plus.me", "https://www.googleapis.com/auth/drive.file"],
 		state: 'smart-reader',
